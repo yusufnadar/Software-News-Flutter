@@ -31,7 +31,8 @@ class CustomDrawer extends StatelessWidget {
                   horizontal: Get.width * 0.03,
                 ),
                 margin: EdgeInsets.only(
-                    bottom: Get.height * 0.02),
+                  bottom: Get.height * 0.02,
+                ),
                 child: Text(
                   'Software News',
                   style: regularTextStyle(fontSize: 18),
@@ -40,15 +41,15 @@ class CustomDrawer extends StatelessWidget {
               Container(
                 height: 1,
                 width: Get.width,
-                color: Colors.grey.shade300
+                color: Colors.grey.shade300,
               ),
               GestureDetector(
-                onTap: ()=>Get.to(()=>About()),
+                onTap: () => Get.to(() => About()),
                 child: Container(
                   decoration: BoxDecoration(),
                   padding: EdgeInsets.symmetric(
                     horizontal: Get.width * 0.03,
-                    vertical: Get.height*0.03
+                    vertical: Get.height * 0.03,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

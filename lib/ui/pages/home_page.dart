@@ -15,7 +15,7 @@ class HomePageController extends GetxController {
   ScrollController scrollController = ScrollController();
   RxBool canRequest = true.obs;
 
-  void _listeScrollListener() async {
+  void _listScrollListener() async {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
       if (pageNumber <= 9) {
@@ -39,7 +39,7 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    scrollController.addListener(_listeScrollListener);
+    scrollController.addListener(_listScrollListener);
   }
 
   @override
@@ -111,7 +111,8 @@ class HomePage extends StatelessWidget {
                           child: Text(
                             'Loading...',
                             style: regularTextStyle(fontSize: 16),
-                          ))
+                          ),
+                        )
                       : Container()
                 ],
               ),
@@ -175,6 +176,7 @@ class HomePage extends StatelessWidget {
               child: CachedNetworkImage(
                 key: UniqueKey(),
                 imageUrl: controller.newsList[index].image!,
+                /*
                 imageBuilder: (context, imageProvider) => Container(
                   height: Get.height * 0.2471,
                   decoration: BoxDecoration(
@@ -183,6 +185,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                 */
                 placeholderFadeInDuration: const Duration(seconds: 0),
                 placeholder: (context, error) =>
                     ShimmerWidget(width: Get.width, height: Get.height * 0.22),

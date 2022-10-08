@@ -13,7 +13,8 @@ class NewsController extends GetxController{
 
   Future<bool> getNews({page}) async {
     try{
-      var res = await http.get(Uri.parse('https://yusufnadar.com/api/news/get/$page'));
+      print(page);
+      var res = await http.get(Uri.parse('http://37.148.209.11:3001/api/news/$page'));
       print(page);
       if (HttpStatus(res.statusCode).isOk) {
         newsList.addAll(List<News>.from((json.decode(res.body)).map((e) => News.fromJson(e)).toList()));
