@@ -6,6 +6,8 @@ import 'package:software_news/core/constants/end_points.dart';
 import 'package:software_news/models/news_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../core/constants/end_points.dart';
+
 class NewsController extends GetxController{
   RxList<News> newsList = <News>[].obs;
 
