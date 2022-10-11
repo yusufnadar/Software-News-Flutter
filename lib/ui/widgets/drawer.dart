@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:software_news/core/constants/colors.dart';
 import 'package:software_news/core/constants/fonts.dart';
 import 'package:software_news/ui/pages/about.dart';
+import 'package:software_news/ui/pages/contact.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -66,7 +67,27 @@ class CustomDrawer extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
+              GestureDetector(
+                onTap: () => Get.to(() => Contact()),
+                child: Container(
+                  decoration: BoxDecoration(),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Get.width * 0.03,
+                    vertical: Get.height * 0.03,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Contact',
+                        style: regularTextStyle(fontSize: 18),
+                      ),
+                      Icon(Icons.phone)
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
