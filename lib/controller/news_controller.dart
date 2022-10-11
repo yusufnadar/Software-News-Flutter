@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:software_news/core/constants/end_points.dart';
+import 'package:software_news/core/constants/tokens.dart';
 import 'package:software_news/models/news_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,9 +15,12 @@ class NewsController extends GetxController{
   RxBool isLoading = false.obs;
 
 
-  Future<bool> getNews({int? page}) async {
+  Future<bool> getNews({page}) async {
     try{
-      var res = await http.get(Uri.parse(EndPoints.baseUrl+page.toString() ??''));
+      var res = await http.get(Uri.parse(EndPoints.baseUrl+page.toString()),headers: {
+        'Content-Type':'application/json',
+        'Authorization':'Bearer ${Tokens.appToken}'
+      });
       if (HttpStatus(res.statusCode).isOk) {
         newsList.addAll(List<News>.from((json.decode(res.body)).map((e) => News.fromJson(e)).toList()));
         return true;
