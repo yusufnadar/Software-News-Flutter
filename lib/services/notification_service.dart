@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:software_news/ui/pages/home_page.dart';
@@ -48,15 +50,17 @@ class NotificationApi extends GetxController {
             now.millisecond, now.microsecond)
         .isAfter(DateTime.now());
     // eğer seçilen tarih öncekinden daha gerideyse sonraki günü gönderiyorum
+    isAfter == false ? thisDay += 1 : null;
     switch (DateTime.now().month) {
       case 1:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
-              hour: hour,
-              minute: minute,
-              dayNumber: 31,
-              month: 1);
+            thisDay: thisDay,
+            hour: hour,
+            minute: minute,
+            dayNumber: 31,
+            month: 1,
+          );
           await createNotification(
               hour: hour, minute: minute, dayNumber: 28, month: 2);
           await createNotification(
@@ -84,11 +88,12 @@ class NotificationApi extends GetxController {
       case 2:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
-              hour: hour,
-              minute: minute,
-              dayNumber: 28,
-              month: 2);
+            thisDay: thisDay,
+            hour: hour,
+            minute: minute,
+            dayNumber: 28,
+            month: 2,
+          );
           await createNotification(
               hour: hour, minute: minute, dayNumber: 31, month: 3);
           await createNotification(
@@ -114,11 +119,12 @@ class NotificationApi extends GetxController {
       case 3:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
-              hour: hour,
-              minute: minute,
-              dayNumber: 31,
-              month: 3);
+            thisDay: thisDay,
+            hour: hour,
+            minute: minute,
+            dayNumber: 31,
+            month: 3,
+          );
           await createNotification(
               hour: hour, minute: minute, dayNumber: 30, month: 4);
           await createNotification(
@@ -142,11 +148,12 @@ class NotificationApi extends GetxController {
       case 4:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
-              hour: hour,
-              minute: minute,
-              dayNumber: 30,
-              month: 4);
+            thisDay: thisDay,
+            hour: hour,
+            minute: minute,
+            dayNumber: 30,
+            month: 4,
+          );
           await createNotification(
               hour: hour, minute: minute, dayNumber: 31, month: 5);
           await createNotification(
@@ -168,7 +175,7 @@ class NotificationApi extends GetxController {
       case 5:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 31,
@@ -192,7 +199,7 @@ class NotificationApi extends GetxController {
       case 6:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 30,
@@ -214,7 +221,7 @@ class NotificationApi extends GetxController {
       case 7:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 31,
@@ -234,7 +241,7 @@ class NotificationApi extends GetxController {
       case 8:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 31,
@@ -252,7 +259,7 @@ class NotificationApi extends GetxController {
       case 9:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 30,
@@ -268,7 +275,7 @@ class NotificationApi extends GetxController {
       case 10:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 31,
@@ -282,7 +289,7 @@ class NotificationApi extends GetxController {
       case 11:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 30,
@@ -294,7 +301,7 @@ class NotificationApi extends GetxController {
       case 12:
         {
           await createNotification(
-              thisDay: isAfter == false ? thisDay + 1 : thisDay,
+              thisDay: thisDay,
               hour: hour,
               minute: minute,
               dayNumber: 31,
@@ -305,14 +312,16 @@ class NotificationApi extends GetxController {
   }
 
   static Future createNotification(
-      {thisDay, hour, minute, dayNumber, month,motivationList}) async {
+      {thisDay, hour, minute, dayNumber, month, motivationList}) async {
     for (int d = thisDay ?? 1; d <= dayNumber; d++) {
+      var randomId = math.Random().nextInt(10000000);
       await NotificationApi.showNotification(
-        tz.TZDateTime(tz.local, 2022, month, d, hour - 3, minute, 0, 0),
+        tz.TZDateTime(tz.local, DateTime.now().year, month, d, hour - 3, minute, 0, 0),
         title: 'Check Latest News',
         body: 'There may be new news that may be of interest to you',
-        id: math.Random().nextInt(10000000),
+        id: randomId,
         payload: 'yusuf.o',
+
       );
     }
   }
